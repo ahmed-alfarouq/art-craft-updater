@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ArtCraft install-manifest.json (schema version 1)",
+  "description": "Local installation record. Never trusted without validation: see Test-InstallManifest. All file paths are relative to the application root, '/'-separated, with no absolute, traversal, or escaping entries.",
+  "type": "object",
+  "required": ["schemaVersion", "appId", "version", "files"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "appId": { "enum": ["photocraft", "filmcraft", "effectcraft"] },
+    "version": { "type": "string", "minLength": 1 },
+    "tag": { "type": "string" },
+    "archive": {
+      "type": "object",
+      "required": ["name", "sha256"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-fA-F]{64}$" }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-fA-F]{64}$" },
+          "length": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "cliVersionOutput": { "type": "string" },
+        "signatureStatus": { "type": "string" },
+        "verifiedAtUtc": { "type": "string" }
+      }
+    },
+    "portableMarker": {
+      "type": "object",
+      "properties": {
+        "present": { "type": "boolean" },
+        "markerName": { "type": "string" }
+      }
+    },
+    "previous": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string" },
+        "location": { "type": "string" },
+        "archiveSha256": { "type": "string" }
+      }
+    }
+  }
+}

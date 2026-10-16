@@ -1,0 +1,43 @@
+<Window x:Class="ArtCraftUpdater.Wpf.InstallDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Install update" Width="560" Height="440"
+        MinWidth="480" MinHeight="320"
+        Background="{StaticResource WindowBackgroundBrush}"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+  <DockPanel Margin="28,24,28,24">
+    <TextBlock DockPanel.Dock="Top" Style="{StaticResource HeadingText}"
+                FontSize="20" Text="Install update"/>
+    <TextBlock DockPanel.Dock="Top" Style="{StaticResource SubheaderText}"
+                Text="This installs the verified release using the trusted engine. Verification, staging, and rollback on failure are handled there. Once started, an install cannot be cancelled." TextWrapping="Wrap"/>
+    <ListBox x:Name="InstallList" DockPanel.Dock="Top" Margin="0,16,0,0" MaxHeight="160"
+              Background="Transparent" BorderThickness="0" IsTabStop="False">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Margin="0,0,0,8">
+            <TextBlock FontFamily="{StaticResource AppFontFamily}" FontSize="14"
+                        FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}">
+              <Run Text="{Binding Name}"/><Run Text="  "/><Run Text="{Binding InstalledVersion}"/>
+              <Run Text=" -> "/><Run Text="{Binding LatestVersion}"/>
+            </TextBlock>
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <TextBlock x:Name="PhaseText" DockPanel.Dock="Top" Margin="0,12,0,0"
+                FontFamily="{StaticResource AppFontFamily}" FontSize="12"
+                Foreground="{StaticResource TextPrimaryBrush}" TextWrapping="Wrap"
+                Text="Ready. Installing starts only when you choose Install."/>
+    <TextBlock x:Name="ResultText" DockPanel.Dock="Top" Margin="0,8,0,0"
+                FontFamily="{StaticResource AppFontFamily}" FontSize="12"
+                Foreground="{StaticResource MutedBrush}" TextWrapping="Wrap"
+                Visibility="Collapsed"/>
+    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                 HorizontalAlignment="Right" Margin="0,16,0,0">
+      <Button x:Name="CloseButton" Content="Close" Style="{StaticResource SecondaryButton}"
+               TabIndex="1" Margin="0,0,10,0" IsCancel="True"/>
+      <Button x:Name="InstallButton" Content="Install" Style="{StaticResource PrimaryButton}"
+               TabIndex="0" IsDefault="True"/>
+    </StackPanel>
+  </DockPanel>
+</Window>

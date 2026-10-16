@@ -1,0 +1,67 @@
+<Window x:Class="ArtCraftUpdater.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:ArtCraftUpdater.Wpf"
+        Title="ArtCraft Updater" Width="880" Height="520"
+        MinWidth="640" MinHeight="360"
+        Background="{StaticResource WindowBackgroundBrush}">
+  <Window.Resources>
+    <Style x:Key="AppRowContainer" TargetType="ListBoxItem">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Padding" Value="0"/>
+      <Setter Property="Margin" Value="0,0,0,8"/>
+      <Setter Property="FocusVisualStyle" Value="{StaticResource SecondaryFocusRing}"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ListBoxItem">
+            <Border Background="{TemplateBinding Background}"
+                    CornerRadius="{StaticResource CardCornerRadius}"
+                    Padding="16,12,16,12">
+              <ContentPresenter/>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+      <Style.Triggers>
+        <Trigger Property="IsSelected" Value="True">
+          <Setter Property="Background" Value="{StaticResource SelectedRowBrush}"/>
+        </Trigger>
+      </Style.Triggers>
+    </Style>
+    <DataTemplate x:Key="AppRowTemplate" DataType="{x:Type local:AppListItem}">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Width="32" Height="32" CornerRadius="8"
+                Background="{StaticResource BorderBrush}" Margin="0,0,12,0">
+          <TextBlock Text="{Binding Initial}" FontFamily="{StaticResource AppFontFamily}"
+                     FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"
+                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+          <TextBlock Text="{Binding Name}" FontFamily="{StaticResource AppFontFamily}"
+                     FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"/>
+          <TextBlock FontFamily="{StaticResource AppFontFamily}" FontSize="12"
+                     Foreground="{StaticResource MutedBrush}">
+            <Run Text="Installed "/><Run Text="{Binding InstalledVersion}"/>
+            <Run Text="  Latest "/><Run Text="{Binding LatestVersion}"/>
+          </TextBlock>
+        </StackPanel>
+        <local:StatusBadge Grid.Column="2" VerticalAlignment="Center"
+                           Kind="{Binding StatusKind}" Text="{Binding StatusText}"/>
+      </Grid>
+    </DataTemplate>
+  </Window.Resources>
+  <DockPanel>
+    <local:TopBar x:Name="TopBar" DockPanel.Dock="Top"/>
+    <ListBox x:Name="AppList" DockPanel.Dock="Top" Margin="28,16,28,24"
+             Background="Transparent" BorderThickness="0"
+             SelectionMode="Extended"
+             ItemContainerStyle="{StaticResource AppRowContainer}"
+             ItemTemplate="{StaticResource AppRowTemplate}"/>
+  </DockPanel>
+</Window>

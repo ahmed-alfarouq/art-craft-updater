@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon></ApplicationIcon>
+    <AssemblyName>ArtCraftUpdater.Wpf</AssemblyName>
+    <RootNamespace>ArtCraftUpdater.Wpf</RootNamespace>
+    <!-- Phase 2A: presentation only. No network, no PowerShell hosting,
+         no installation logic. See docs/architecture-decision-wpf.md -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Bridge\ArtCraftBridge.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

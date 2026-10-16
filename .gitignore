@@ -1,0 +1,11 @@
+# .NET build output
+**/bin/
+**/obj/
+
+# Generated updater distribution; rebuilt by Build-UpdaterExe.ps1
+dist/
+
+# Visual Studio / local IDE state
+.vs/
+*.user
+*.suo

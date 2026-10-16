@@ -1,0 +1,70 @@
+{
+  "$comment": "Trusted application registry for the ArtCraft updater. Repositories below were observed on the storytold GitHub organization page. Asset naming and install strategy are marked verified only where confirmed against release packaging (package.ps1) and local installs; everything else is check-only until verified.",
+  "registryVersion": 1,
+  "applications": [
+    {
+      "appId": "photocraft",
+      "displayName": "PhotoCraft",
+      "repo": "https://github.com/storytold/photocraft",
+      "assetPolicy": "verified",
+      "assetPattern": "-windows-x64-portable.zip",
+      "checksumFile": "SHA256SUMS.txt",
+      "installStrategy": "flat"
+    },
+    {
+      "appId": "filmcraft",
+      "displayName": "FilmCraft",
+      "repo": "https://github.com/storytold/filmcraft",
+      "assetPolicy": "verified",
+      "assetPattern": "-windows-x64-portable.zip",
+      "checksumFile": "SHA256SUMS.txt",
+      "installStrategy": "flat"
+    },
+    {
+      "appId": "effectcraft",
+      "displayName": "EffectCraft",
+      "repo": "https://github.com/storytold/effectcraft",
+      "assetPolicy": "verified",
+      "assetPattern": "-windows-x64-portable.zip",
+      "checksumFile": "SHA256SUMS.txt",
+      "installStrategy": "versioned"
+    },
+    {
+      "appId": "vectorcraft",
+      "displayName": "VectorCraft",
+      "repo": "https://github.com/storytold/vectorcraft",
+      "assetPolicy": "unconfirmed",
+      "assetPattern": "-windows-x64-portable.zip",
+      "checksumFile": "SHA256SUMS.txt",
+      "installStrategy": "unsupported"
+    },
+    {
+      "appId": "lightcraft",
+      "displayName": "LightCraft",
+      "repo": "https://github.com/storytold/lightcraft",
+      "assetPolicy": "unconfirmed",
+      "assetPattern": "-windows-x64-portable.zip",
+      "checksumFile": "SHA256SUMS.txt",
+      "installStrategy": "unsupported"
+    },
+    {
+      "appId": "designcraft",
+      "displayName": "DesignCraft",
+      "repo": "https://github.com/storytold/designcraft",
+      "assetPolicy": "unconfirmed",
+      "assetPattern": "-windows-x64-portable.zip",
+      "checksumFile": "SHA256SUMS.txt",
+      "installStrategy": "unsupported"
+    },
+    {
+      "appId": "pdfcraft",
+      "displayName": "PdfCraft (PrintCraft)",
+      "repo": "https://github.com/storytold/pdfcraft",
+      "assetPolicy": "unconfirmed",
+      "assetPattern": "-windows-x64-portable.zip",
+      "checksumFile": "SHA256SUMS.txt",
+      "installStrategy": "unsupported"
+    }
+  ],
+  "infrastructureDirectories": [".quarantine", "tools"]
+}
